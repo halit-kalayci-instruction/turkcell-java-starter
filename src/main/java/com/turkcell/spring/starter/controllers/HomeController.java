@@ -79,8 +79,6 @@ public class HomeController {
         return new ResponseEntity( product.getName() + " ürünü eklendi", headers,HttpStatus.CREATED);
     }
 
-    // 19:05 dersteyiz
-
     // Her bir temel entitynin kendi controllerinin bulunması best practicedir.
 
 
