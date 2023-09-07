@@ -3,6 +3,9 @@ package com.turkcell.spring.starter.controllers;
 // CTRL + SPACE => Intelissense'i triggerlar
 
 import com.turkcell.spring.starter.entities.Product;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,7 +25,7 @@ import java.util.List;
 // PUT => Bir kaynağın değiştirilmesi isteği durumunda kullanılır. Örn: ürün güncellenmesi.
 // DELETE => Bir kaynağın silinmesi isteği durumunda kullanılır. Örn: ürünün dbden silinmesi.
 public class HomeController {
-
+    List<Product> productList = new ArrayList<>();
 
     // http://localhost:8080/home GET İSTEĞİ
     @GetMapping("")
@@ -44,21 +47,6 @@ public class HomeController {
 
     @GetMapping("products")
     public List<Product> getProducts(){
-        List<Product> productList = new ArrayList<>();
-
-        Product product1 = new Product();
-        product1.setId(1);
-        product1.setName("Laptop");
-
-        Product product2 = new Product();
-        product2.setId(2);
-        product2.setName("Telefon");
-
-        productList.add(product1);
-        productList.add(product2);
-
-        // InMemory
-
         return productList;
     }
 
@@ -72,7 +60,28 @@ public class HomeController {
         return product;
     }
 
+    // Body => localhost:8080/product
+    @PostMapping("product")
+    public ResponseEntity addProduct(@RequestBody Product product){
+
+        // built-in => hali hazırda mevcut
+        if(product.getId() <= 0){
+            return new ResponseEntity<>("Eklenecek ürünün idsi 0'dan büyük olmalıdır.", HttpStatus.BAD_REQUEST);
+        }
+
+        productList.add(product);
+
+        // CREATED
+        // 2XX => Başarılı => 200,201
+        // 4XX => Başarısız  => 404,401
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Product-Name",product.getName());
+        return new ResponseEntity( product.getName() + " ürünü eklendi", headers,HttpStatus.CREATED);
+    }
+
+    // 19:05 dersteyiz
+
     // Her bir temel entitynin kendi controllerinin bulunması best practicedir.
-    // 8:00'de dersteyiz..
+
 
 }
