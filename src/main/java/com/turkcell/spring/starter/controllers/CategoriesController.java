@@ -39,7 +39,7 @@ public class CategoriesController {
 
     @GetMapping("search")
     public List<Category> search(@RequestParam("name") String name){
-        List<Category> categories = categoryRepository.search(name);
+        List<Category> categories = categoryRepository.searchNative(name);
         return categories;
     }
 
@@ -63,3 +63,5 @@ public class CategoriesController {
 
     // 20:05 => Discord Pair
 }
+
+// DTOlar => Data Transfer Object

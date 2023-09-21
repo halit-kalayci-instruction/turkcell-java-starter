@@ -17,5 +17,9 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     // JPQL => Tablo ismi yerine entity yazmak
     @Query(value = "Select c FROM Category c WHERE c.categoryName LIKE %:categoryName%", nativeQuery = false)
     List<Category> search(String categoryName);
+
+
+    @Query(value = "Select * from categories Where category_name LIKE %:categoryName%", nativeQuery = true)
+    List<Category> searchNative(String categoryName);
 }
 // Spring Derived Query Methods
