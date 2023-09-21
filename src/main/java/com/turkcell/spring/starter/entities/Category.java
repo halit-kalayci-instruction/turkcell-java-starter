@@ -4,6 +4,8 @@ package com.turkcell.spring.starter.entities;
 import jakarta.persistence.*; // * => ilgili paketin tüm alt paketlerini import eder.
 import lombok.Data;
 
+import java.util.List;
+
 @Data // getter+setter
 @Table(name="categories")
 @Entity
@@ -17,4 +19,13 @@ public class Category {
 
     @Column(name="description")
     private String description;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 }
+
+// One Category Has Many Products
+
+// One To Many
+// One To One
+// Many To Many
