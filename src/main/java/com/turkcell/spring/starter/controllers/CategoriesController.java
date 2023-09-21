@@ -31,6 +31,12 @@ public class CategoriesController {
         return categoriesInDb;
     }
 
+    @GetMapping("getByName")
+    public List<Category> getCategoriesByName(@RequestParam("name") String name){
+        List<Category> categories = categoryRepository.findByCategoryNameContaining(name);
+        return categories;
+    }
+
     @GetMapping("getById")
     public Category getCategoryById(@RequestParam("id") int id){
         Category category = categoryRepository.findById(id).orElseThrow();
