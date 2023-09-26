@@ -1,6 +1,7 @@
 package com.turkcell.spring.starter.repositories;
 
 import com.turkcell.spring.starter.entities.Category;
+import com.turkcell.spring.starter.entities.dtos.CategoryForListingDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,5 +22,9 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     @Query(value = "Select * from categories Where category_name LIKE %:categoryName%", nativeQuery = true)
     List<Category> searchNative(String categoryName);
+
+    @Query(value="SELECT new " +
+            "com.turkcell.spring.starter.entities.dtos.CategoryForListingDto(c.categoryId, c.categoryName) FROM Category c")
+    List<CategoryForListingDto> getForListing();
 }
 // Spring Derived Query Methods

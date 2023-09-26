@@ -20,7 +20,7 @@ public class CategoryManager implements CategoryService{
     public List<CategoryForListingDto> getAll() {
         // DTO => Data Transfer Object
 
-
+/*   BAD PRACTICE !!
         List<Category> categories = categoryRepository.findAll();
         List<CategoryForListingDto> categoryForListingDtos = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class CategoryManager implements CategoryService{
             dto.setCategoryName(c.getCategoryName());
             categoryForListingDtos.add(dto);
         }
-
-        return categoryForListingDtos;
+*/
+        return categoryRepository.getForListing();
     }
 }

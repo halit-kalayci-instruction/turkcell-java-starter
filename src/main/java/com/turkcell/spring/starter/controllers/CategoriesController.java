@@ -2,6 +2,7 @@ package com.turkcell.spring.starter.controllers;
 
 import com.turkcell.spring.starter.business.CategoryService;
 import com.turkcell.spring.starter.entities.Category;
+import com.turkcell.spring.starter.entities.dtos.CategoryForAddDto;
 import com.turkcell.spring.starter.entities.dtos.CategoryForListingDto;
 import com.turkcell.spring.starter.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,12 @@ public class CategoriesController {
     }
 
     @PostMapping()
-    public ResponseEntity add(@RequestBody Category category){
+    public ResponseEntity add(@RequestBody CategoryForAddDto request){
+        // Manual Mapleme
+        // Auto Mapper => ModelMapper
+        Category category = new Category();
+        category.setCategoryName(request.getCategoryName());
+        category.setDescription(request.getDescription());
         //categoryRepository.save(category);
         return new ResponseEntity("Kategori eklendi", HttpStatus.CREATED);
     }
