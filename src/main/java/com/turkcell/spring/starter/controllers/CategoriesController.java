@@ -1,6 +1,8 @@
 package com.turkcell.spring.starter.controllers;
 
+import com.turkcell.spring.starter.business.CategoryService;
 import com.turkcell.spring.starter.entities.Category;
+import com.turkcell.spring.starter.entities.dtos.CategoryForListingDto;
 import com.turkcell.spring.starter.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,41 +19,41 @@ public class CategoriesController {
 
     // DI
     // Spring IoC => Bağımlılıkların çözümlenmesi..
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
-    @Autowired
-    public CategoriesController(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public CategoriesController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @GetMapping()
-    public List<Category> getCategories()
+    public List<CategoryForListingDto> getCategories()
     {
-        List<Category> categoriesInDb = categoryRepository.findAll();
+        // Category => PostgreSQL'deki tablo
+        List<CategoryForListingDto> categoriesInDb = categoryService.getAll();
         return categoriesInDb;
     }
 
     @GetMapping("getByName")
     public List<Category> getCategoriesByName(@RequestParam("name") String name){
-        List<Category> categories = categoryRepository.findByCategoryNameContaining(name);
-        return categories;
+        //List<Category> categories = categoryRepository.findByCategoryNameContaining(name);
+        return null;
     }
 
     @GetMapping("search")
     public List<Category> search(@RequestParam("name") String name){
-        List<Category> categories = categoryRepository.searchNative(name);
-        return categories;
+        //List<Category> categories = categoryRepository.searchNative(name);
+        return null;
     }
 
     @GetMapping("getById")
     public Category getCategoryById(@RequestParam("id") int id){
-        Category category = categoryRepository.findById(id).orElseThrow();
-        return category;
+        //Category category = categoryRepository.findById(id).orElseThrow();
+        return null;
     }
 
     @PostMapping()
     public ResponseEntity add(@RequestBody Category category){
-        categoryRepository.save(category);
+        //categoryRepository.save(category);
         return new ResponseEntity("Kategori eklendi", HttpStatus.CREATED);
     }
 
