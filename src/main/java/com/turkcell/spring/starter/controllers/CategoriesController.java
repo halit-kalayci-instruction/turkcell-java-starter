@@ -62,14 +62,10 @@ public class CategoriesController {
         //categoryRepository.save(category);
         return new ResponseEntity("Kategori eklendi", HttpStatus.CREATED);
     }
-
-    // PostgreSQL kurulumu
-    // Northwind kurulumu
-    // Northwinddeki tüm tabloları modellemek.
-    // Araştırma Konusu : Spring JPA'da ilişkisel tabloların modellenmesi.
-    // 3 temel tablomuz için veri erişim- business katmanı - controller kodlarının yazılması.
-
-    // 20:05 => Discord Pair
 }
 
 // DTOlar => Data Transfer Object
+
+// Proje İhtiyaçı İstekleri
+// Projemizde ürün ekleme işlemi yapılabilmelidir.
+
