@@ -13,6 +13,8 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     //List<Category> findByIdGreaterThanEqual(int id);
     List<Category> findByDescription(String description);
 
+    Category findByCategoryName(String categoryName);
+
     // Native SQL
     // JPQL => JPA'nın SQL'e neredeyse birebir benzer versiyonu..
     // JPQL => Tablo ismi yerine entity yazmak
