@@ -1,11 +1,10 @@
 package com.turkcell.spring.starter.controllers;
 
-import com.turkcell.spring.starter.business.CategoryService;
+import com.turkcell.spring.starter.business.abstracts.CategoryService;
 import com.turkcell.spring.starter.entities.Category;
 import com.turkcell.spring.starter.entities.dtos.CategoryForAddDto;
 import com.turkcell.spring.starter.entities.dtos.CategoryForListingDto;
-import com.turkcell.spring.starter.repositories.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +52,7 @@ public class CategoriesController {
     }
 
     @PostMapping()
-    public ResponseEntity add(@RequestBody CategoryForAddDto request){
+    public ResponseEntity add(@RequestBody @Valid CategoryForAddDto request){
         // Manual Mapleme
         // Auto Mapper => ModelMapper
         Category category = new Category();

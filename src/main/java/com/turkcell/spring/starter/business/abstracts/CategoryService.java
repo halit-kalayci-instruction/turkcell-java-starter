@@ -1,4 +1,4 @@
-package com.turkcell.spring.starter.business;
+package com.turkcell.spring.starter.business.abstracts;
 
 import com.turkcell.spring.starter.entities.Category;
 import com.turkcell.spring.starter.entities.dtos.CategoryForListingDto;
