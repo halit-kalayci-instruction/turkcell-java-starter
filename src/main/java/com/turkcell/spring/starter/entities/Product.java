@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Table(name="products")
@@ -22,6 +24,11 @@ public class Product {
     @JoinColumn(name="category_id")
     @JsonIgnore
     private Category category;
+
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderDetail> orderDetails;
+
 }
 
 // ORM => Object Relation Mapping
