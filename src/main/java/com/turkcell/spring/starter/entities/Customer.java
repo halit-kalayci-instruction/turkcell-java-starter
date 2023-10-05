@@ -2,6 +2,7 @@ package com.turkcell.spring.starter.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="customers")
 @Entity
+@Builder
 public class Customer {
     @Id()
     @Column(name="customer_id")
