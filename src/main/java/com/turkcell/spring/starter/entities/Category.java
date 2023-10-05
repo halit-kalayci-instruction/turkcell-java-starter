@@ -2,13 +2,19 @@ package com.turkcell.spring.starter.entities;
 
 
 import jakarta.persistence.*; // * => ilgili paketin tüm alt paketlerini import eder.
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data // getter+setter
 @Table(name="categories")
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
     @Id
     @Column(name="category_id")

@@ -17,12 +17,10 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     // Native SQL
     // JPQL => JPA'nın SQL'e neredeyse birebir benzer versiyonu..
     // JPQL => Tablo ismi yerine entity yazmak
-    @Query(value = "Select c FROM Category c WHERE c.categoryName LIKE %:categoryName%", nativeQuery = false)
-    List<Category> search(String categoryName);
 
 
-    @Query(value = "Select * from categories Where category_name LIKE %:categoryName%", nativeQuery = true)
-    List<Category> searchNative(String categoryName);
+
+
 
     @Query(value="SELECT new " +
             "com.turkcell.spring.starter.entities.dtos.category.CategoryForListingDto(c.categoryId, c.categoryName) FROM Category c")

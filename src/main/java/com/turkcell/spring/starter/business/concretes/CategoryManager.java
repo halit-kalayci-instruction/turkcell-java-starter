@@ -43,7 +43,7 @@ public class CategoryManager implements CategoryService {
         // Business Rule => Aynı isimde iki kategori olmamalı
 
         categoryWithSameNameShouldNotExist(request.getCategoryName());
-        Category category = new Category();
+        Category category = Category.builder().build();
         category.setCategoryName(request.getCategoryName());
         category.setDescription(request.getDescription());
 

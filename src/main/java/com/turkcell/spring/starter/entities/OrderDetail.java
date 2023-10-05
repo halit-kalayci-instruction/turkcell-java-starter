@@ -3,12 +3,14 @@ package com.turkcell.spring.starter.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name="order_details")
 @Entity
 public class OrderDetail {

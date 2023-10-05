@@ -54,7 +54,7 @@ public class HomeController {
     // Route => localhost:8080/home/getById/1/deneme
     @GetMapping("getById")
     public Product getById(@RequestParam("id") int id){
-        Product product = new Product();
+        Product product = Product.builder().build();
         product.setId(id);
         product.setName("Laptop");
         return product;
