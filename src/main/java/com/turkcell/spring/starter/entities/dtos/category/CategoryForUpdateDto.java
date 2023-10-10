@@ -16,7 +16,7 @@ public class CategoryForUpdateDto {
     private int id;
 
     @NotBlank(message = "Kategori adı girmek zorunludur.")
-    @Size(min=3)
+    @Size(min=5,message = "{categoryNameShouldBeMinimum}")
     private String categoryName;
 
     @NotBlank(message = "Açıklama alanı zorunludur.")
