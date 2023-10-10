@@ -3,16 +3,21 @@ package com.turkcell.spring.starter.controllers;
 // CTRL + SPACE => Intelissense'i triggerlar
 
 import com.turkcell.spring.starter.entities.Product;
+import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.spi.messageinterpolation.LocaleResolverContext;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.LocaleContextResolver;
+import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("home")
+
 // http://localhost:8080/home
 // http://localhost:8080/home/index
 // http://localhost:8080/home/categories
@@ -24,13 +29,19 @@ import java.util.List;
 // POST => Bir kaynak oluşturulması isteği durumlarında kullanılır. Örn: ürün ekleme fonksiyonu
 // PUT => Bir kaynağın değiştirilmesi isteği durumunda kullanılır. Örn: ürün güncellenmesi.
 // DELETE => Bir kaynağın silinmesi isteği durumunda kullanılır. Örn: ürünün dbden silinmesi.
+@RestController
+@RequestMapping("home")
+@RequiredArgsConstructor
 public class HomeController {
+
+    private final MessageSource messageSource;
+
     List<Product> productList = new ArrayList<>();
 
     // http://localhost:8080/home GET İSTEĞİ
     @GetMapping("")
     public String get(){
-        return "Merhaba Turkcell";
+        return messageSource.getMessage("hello", null,LocaleContextHolder.getLocale());
     }
 
     // http://localhost:8080/home POST İSTEĞİ
