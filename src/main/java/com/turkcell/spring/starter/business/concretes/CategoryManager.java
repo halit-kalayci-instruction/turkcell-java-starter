@@ -7,17 +7,20 @@ import com.turkcell.spring.starter.entities.dtos.category.CategoryForAddDto;
 import com.turkcell.spring.starter.entities.dtos.category.CategoryForListingDto;
 import com.turkcell.spring.starter.entities.dtos.category.CategoryForUpdateDto;
 import com.turkcell.spring.starter.repositories.CategoryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryManager implements CategoryService {
     private final CategoryRepository categoryRepository;
+    private final MessageSource messageSource;
 
-    public CategoryManager(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+
 
     @Override
     public List<CategoryForListingDto> getAll() {
@@ -81,7 +84,8 @@ public class CategoryManager implements CategoryService {
     private Category returnCategoryByIdIfExists(int id){
         Category categoryToDelete = categoryRepository.findById(id).orElse(null);
         if(categoryToDelete==null)
-            throw new BusinessException("Böyle bir kategori bulunamadı.");
+            throw new BusinessException(
+                    messageSource.getMessage("categoryDoesNotExistWithGivenId", new Object[] {id}, LocaleContextHolder.getLocale()));
         return categoryToDelete;
     }
 }

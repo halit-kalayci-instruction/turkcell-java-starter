@@ -10,6 +10,8 @@ import java.util.Locale;
 
 @Configuration
 public class MessageSourceConfiguration {
+
+    //7.30
     @Bean
     public ResourceBundleMessageSource bundleMessageSource(){
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
