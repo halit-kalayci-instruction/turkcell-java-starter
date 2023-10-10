@@ -1,7 +1,7 @@
 package com.turkcell.spring.starter.business.concretes;
 
 import com.turkcell.spring.starter.business.abstracts.CategoryService;
-import com.turkcell.spring.starter.business.exceptions.BusinessException;
+import com.turkcell.spring.starter.core.exceptions.types.BusinessException;
 import com.turkcell.spring.starter.entities.Category;
 import com.turkcell.spring.starter.entities.dtos.category.CategoryForAddDto;
 import com.turkcell.spring.starter.entities.dtos.category.CategoryForListingDto;

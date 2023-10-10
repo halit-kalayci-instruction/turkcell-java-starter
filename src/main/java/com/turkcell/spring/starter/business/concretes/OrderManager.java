@@ -2,28 +2,28 @@ package com.turkcell.spring.starter.business.concretes;
 
 import com.turkcell.spring.starter.business.abstracts.OrderDetailService;
 import com.turkcell.spring.starter.business.abstracts.OrderService;
-import com.turkcell.spring.starter.business.exceptions.BusinessException;
 import com.turkcell.spring.starter.entities.Customer;
 import com.turkcell.spring.starter.entities.Employee;
 import com.turkcell.spring.starter.entities.Order;
-import com.turkcell.spring.starter.entities.OrderDetail;
 import com.turkcell.spring.starter.entities.dtos.order.OrderForAddDto;
 import com.turkcell.spring.starter.repositories.OrderRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class OrderManager implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderDetailService orderDetailService;
 
-    public OrderManager(OrderRepository orderRepository, OrderDetailService orderDetailService) {
-        this.orderRepository = orderRepository;
-        this.orderDetailService = orderDetailService;
-    }
+    private final ModelMapper modelMapper;
+
 
     @Override
     @Transactional // metotun tamamen başarılı bir şekilde bitmesini bekleyip değişiklikleri o şekilde pushlayan metot
@@ -31,7 +31,11 @@ public class OrderManager implements OrderService {
         // Order'ı dbye kaydet, orderin bir id'si oluşsun..
         // oluşan id'yi ve itemları orderdetail service gönder o da bu idye detay eklemelerini yapsın..
 
-        Order order = Order.builder()
+        // Manual Mapping
+        // Auto Mapping
+
+        // Multi-Language Desteği => Mikro Görevler
+        /*Order order = Order.builder()
                 .customer(Customer.builder().customerId(request.getCustomerId()).build())
                 .orderDate(LocalDate.now())
                 .employee(Employee.builder().employeeId(request.getEmployeeId()).build())
@@ -41,10 +45,13 @@ public class OrderManager implements OrderService {
                 .shipName(request.getShipName())
                 .shipRegion(request.getShipRegion())
                 .build();
+        */
+        Order orderFromAutoMapping = modelMapper.map(request, Order.class);
 
-        order = orderRepository.save(order);  // gönderen hesaptan parayı düş
+
+        orderFromAutoMapping = orderRepository.save(orderFromAutoMapping);  // gönderen hesaptan parayı düş
 
         // bu satırdan sonra order'ın id alanı set edilmiş..
-        orderDetailService.addItemsToOrder(order, request.getItems()); // gönderilen hesaba parayı göndermek
+        orderDetailService.addItemsToOrder(orderFromAutoMapping, request.getItems()); // gönderilen hesaba parayı göndermek
 }
 }

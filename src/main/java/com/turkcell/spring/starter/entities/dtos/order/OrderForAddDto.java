@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderForAddDto {
+    // customer => Id
     private String customerId; // Normalde giriş yapmış kullanıcı otomatik idsi alınır..
     private short employeeId;
     private LocalDate requiredDate;

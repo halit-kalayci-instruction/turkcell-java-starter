@@ -1,14 +1,13 @@
 package com.turkcell.spring.starter.business.concretes;
 
 import com.turkcell.spring.starter.business.abstracts.ProductService;
-import com.turkcell.spring.starter.business.exceptions.BusinessException;
+import com.turkcell.spring.starter.core.exceptions.types.BusinessException;
 import com.turkcell.spring.starter.entities.Category;
 import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.entities.Supplier;
 import com.turkcell.spring.starter.entities.dtos.product.ProductForAddDto;
 import com.turkcell.spring.starter.entities.dtos.product.ProductForListingDto;
 import com.turkcell.spring.starter.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
