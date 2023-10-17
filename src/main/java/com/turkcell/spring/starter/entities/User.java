@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+// Spring Security'deki user ile uyumlu çalışabilmesi için `implements UserDetails`
 public class User implements UserDetails {
     @Id
     @Column(name="id")
