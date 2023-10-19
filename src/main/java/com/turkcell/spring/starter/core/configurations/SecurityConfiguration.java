@@ -37,7 +37,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // listedeki url'lerin auth zorunluluğu olmaması
+    // listedeki url'lerin auth zorunluluğu olmaması
     http
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(req -> req
@@ -49,7 +49,5 @@ public class SecurityConfiguration {
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-
 
 }
